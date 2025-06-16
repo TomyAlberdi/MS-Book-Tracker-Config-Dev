@@ -1,0 +1,53 @@
+server:
+  port: ${PORT:0}
+  
+## Microservice info
+info:
+  app:
+    name: UserAPI
+    version: 1.0.0
+    description: UserAPI description
+  author: tomyalberdi
+
+## Spring 
+spring:
+  application:
+    name: UserApi
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3333/dbUsers
+    username: root
+    password: db-bt-22
+  jpa:
+    generate-ddl: true
+    hibernate:
+      enable_lazy_load_no_trans: true
+      event:
+        merge:
+          entity_copy_observer: allow
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+## Eureka Client
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  ## Actuator
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info,health

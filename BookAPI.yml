@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:0}
+  
+## Microservice info
+info:
+  app:
+    name: BookAPI
+    version: 1.0.0
+    description: BookAPI description
+  author: tomyalberdi
+
+## Spring 
+spring:
+  application:
+    name: BookApi
+  data:
+    mongodb:
+      host: localhost
+      port: 3334
+      database: dbBooks
+      username: mongoadmin
+      password: mongo-secret
+      authentication-database: admin
+
+## Eureka Client
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info,health
