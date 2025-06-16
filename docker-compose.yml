@@ -1,19 +1,19 @@
 services:
 
-  db:
+  dev-db:
     image: mysql:8.0.19
     environment:
       - MYSQL_DATABASE=dbUsers
       - MYSQL_ROOT_PASSWORD=db-bt-22
     restart: always
     volumes:
-      - db-data:/var/lib/mysql
+      - dev-db-data:/var/lib/mysql
     networks:
       - spring-mysql
     ports:
       - "3333:3306"
 
-  mongodb:
+  dev-mongodb:
     image: mongo:7.0
     restart: always
     environment:
@@ -21,7 +21,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: mongo-secret
       MONGO_INITDB_DATABASE: dbBooks
     volumes:
-      - mongo-data:/data/db
+      - dev-mongo-data:/data/db
     networks:
       - spring-mysql
     ports:
