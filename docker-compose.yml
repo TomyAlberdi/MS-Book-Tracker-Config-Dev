@@ -26,3 +26,10 @@ services:
       - spring-mysql
     ports:
       - "3334:27017"
+
+volumes:
+  db-data: {}
+  mongo-data: {}
+
+networks:
+  spring-mysql: {}
