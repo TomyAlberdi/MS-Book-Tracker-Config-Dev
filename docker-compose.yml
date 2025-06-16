@@ -28,8 +28,8 @@ services:
       - "3334:27017"
 
 volumes:
-  db-data: {}
-  mongo-data: {}
+  dev-db-data: {}
+  dev-mongo-data: {}
 
 networks:
   spring-mysql: {}
